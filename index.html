@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en" ng-app='remainder'>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/index.css">	
+	<script src='js/angular.js'></script>
+	<script src='js/jquery.js'></script>
+	<script src='js/index.js'></script>
+</head>
+<body ng-controller='mainCtrl'>
+	<div class="left-box">
+		<div class="container con1">
+			<div class="icon"></div>
+			<span>提醒事项</span>
+			<div class="add-btn" ng-click='add()'></div>
+		</div>
+		<div class="container con2"></div>
+
+
+
+       
+		<my-container> 
+			 
+				 <div  ng-repeat="v in cates" class="container con3" data_id="{{v.id}}" ng-click="setCurrent(v)">
+				 <div class="con3-left {{v.color}}">
+				 </div>
+				 <div class="con3-mid">{{v.title}}
+				 </div>
+				 <input class="con3-mid" type="text" ng-model="v.title">
+				 <div class="con3-right">
+				 	
+				 </div>
+				 </div>
+			 
+		</my-container>
+
+
+		
+	</div>
+	<div class="right-box">
+		<div class="search-box">
+			<input type="text">
+		</div>
+		<div class="lists wlist color1">
+			<div class="lists-title {{current.color}}">
+				<div class="title">{{current.title}}</div>
+				
+			    <my-card>
+			        <div class="xuanxiang">
+			        <span>选项</span>
+						<div class="card">
+							<div class="card-nav">
+								<div class="border">
+									<input type="text" ng-model="current.title">
+								</div>
+								<div class="list-color">列表颜色</div>
+								<div class="color-box">
+
+								    <div class="color {{v}}" ng-repeat='v in colors' ng-class="{show:v===current.color}" ng-click='current.color=v'>
+								    	<div class="mincolor {{v}}"></div>
+								    </div>
+
+
+									<!-- <div class="color color2">
+										<div class="mincolor color2"></div>
+									</div>
+									<div class="color color3">
+										<div class="mincolor color3"></div>
+									</div>
+									<div class="color color4">
+										<div class="mincolor color4"></div>
+									</div>
+									<div class="color color5">
+										<div class="mincolor color5"></div>
+									</div>
+									<div class="color color6">
+										<div class="mincolor color6"></div>
+									</div>
+									<div class="color color7">
+										<div class="mincolor color7"></div>
+									</div>
+									<div class="color color1">
+										<div class="mincolor color1"></div>
+									</div> -->
+								</div>
+								<div class="line"></div>
+								<div class="delete">删除</div>
+								<div class="wancheng">完成</div>
+								<div class="xian">|</div>
+								<div class="quxiao">取消</div>
+							</div>
+						</div>
+					</div>	
+			    </my-card>
+				
+			</div>
+
+
+			<div class="lists">
+				<span></span>
+				<span>已完成2项</span>		
+			</div>
+			<div class="wanchenglist">
+				<div class="list" ng-repeat='v in current.todos|filter:{state:1}'>
+					<div class="list-color" ng-click='v.state=0'>
+						<div class="maxcolor {{current.color}}">
+							<div class="midcolor {{current.color}}"></div>
+						</div>
+					</div>
+					<input type="list-text" ng-model='v.title'>
+					<div class="list-right">删除</div>
+				</div>
+			</div>
+			<div class="lists">
+				<span></span>
+				<span>未完成</span>		
+			</div>
+			<div class="weiwanchenglist">
+				<div class="list" ng-repeat='v in current.todos|filter:{state:0}'>
+					<div class="list-color" ng-click='v.state=1'>
+						<div class="midcolor {{current.color}}"></div>
+					</div>
+					<input type="list-text" ng-model='v.title'>
+					<div class="list-right">删除</div>
+				</div>
+			</div>
+            
+		</div>
+        
+	</div>
+</body>
+</html>
